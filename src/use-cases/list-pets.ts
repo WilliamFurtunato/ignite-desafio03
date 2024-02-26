@@ -1,9 +1,10 @@
 import { Pet } from '@prisma/client'
 import { PetsRepository } from '@/repositories/pets-repository'
-import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface ListPetUseCaseRequest {
   city: string
+  age?: string
+  size?: string
 }
 
 interface ListPetUseCaseResponse {
@@ -15,8 +16,13 @@ export class ListPetUseCase {
 
   async execute({
     city,
+    age,
+    size,
   }: ListPetUseCaseRequest): Promise<ListPetUseCaseResponse> {
-    const pets = await this.petsRepository.list(city)
+    const pets = await this.petsRepository.list(city, {
+      age,
+      size,
+    })
 
     return { pets }
   }
