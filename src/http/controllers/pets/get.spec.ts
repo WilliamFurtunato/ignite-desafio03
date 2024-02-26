@@ -1,8 +1,6 @@
 import request from 'supertest'
 
 import { app } from '@/app'
-import { makePet } from '@tests/factories/make-pet.factory'
-import { makeOrg } from '@tests/factories/make-org.factory'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 describe('Get Pet (E2E)', () => {
